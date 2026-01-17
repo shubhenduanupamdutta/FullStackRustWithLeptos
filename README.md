@@ -217,3 +217,16 @@ Tailwind is supported natively by Leptos.
 - Similar to JSX in React
 - Looks like a function
 - We pass HTML-like syntax to it, and just like normal macro, it expands into rust code at compile time.
+
+---
+
+## Component
+
+---
+
+Like in most reactive front-end frameworks, a component is a modular building block of an application that has specific inputs or properties and business logic such that its inner working are abstracted away from the rest of the application. Components can be reused throughout the application, and they can also be nested within other components to create complex user interfaces.
+
+We will create components when building a blog website.
+
+- Each component will be defined in `component` folder inside `src` directory.
+-

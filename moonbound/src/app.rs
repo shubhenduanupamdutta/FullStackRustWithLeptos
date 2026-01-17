@@ -1,9 +1,17 @@
+use crate::component::{blog_previews::BlogPreviews, edit_post::EditPost, view_post::ViewPost};
 use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, Stylesheet, Title};
 use leptos_router::{
     components::{Route, Router, Routes},
-    StaticSegment, WildcardSegment,
+    path,
 };
+
+#[component]
+pub fn Navbar() -> impl IntoView {
+    view! {
+        <nav>"This is a navbar"</nav>
+    }
+}
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -13,6 +21,16 @@ pub fn App() -> impl IntoView {
     view! {
         <Stylesheet id="leptos" href="/pkg/leptos_start.css"/>
         <Title text="Welcome to Leptos"/>
-        <h1>"Welcome to Shubhendu's Leptos App"</h1>
+
+        <Navbar />
+        <Router>
+            <main>
+                <Routes fallback=|| "404 Not Found">
+                    <Route path=path!("") view=BlogPreviews />
+                    <Route path=path!("edit/:post_id?") view=EditPost />
+                    <Route path=path!("post/*post_path") view=ViewPost />
+                </Routes>
+            </main>
+        </Router>
     }
 }

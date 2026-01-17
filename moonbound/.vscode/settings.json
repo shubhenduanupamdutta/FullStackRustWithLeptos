@@ -1,8 +1,8 @@
 {
     "rust-analyzer.cargo.features": [
-        "csr",
+        // "csr",
         "hydrate",
-        "ssr"
+        // "ssr"
     ],
     "rust-analyzer.cargo.noDefaultFeatures": false,
     "rust-analyzer.cargo.allTargets": true,
