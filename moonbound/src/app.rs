@@ -9,7 +9,13 @@ use leptos_router::{
 #[component]
 pub fn Navbar() -> impl IntoView {
     view! {
-        <nav>"This is a navbar"</nav>
+        <h2> Blog </h2>
+        <nav>
+            <ul>
+                <li><a href="/">Blog</a></li>
+                <li><a href="/edit">Create</a></li>
+            </ul>
+        </nav>
     }
 }
 

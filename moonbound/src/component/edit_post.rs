@@ -10,15 +10,13 @@ struct EditPostParams {
 #[component]
 pub fn EditPost() -> impl IntoView {
     let params = use_params::<EditPostParams>();
-    let display_params = move || {
-        match params.get() {
-            Ok(EditPostParams { post_id: Some(s)}) => s,
-            _ => "".to_string(),
-        }
+    let display_params = move || match params.get() {
+        Ok(EditPostParams { post_id: Some(s) }) => s,
+        _ => "".to_string(),
     };
 
     view! {
         {display_params}
-        
+
     }
 }
