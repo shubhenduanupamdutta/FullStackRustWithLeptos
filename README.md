@@ -186,3 +186,34 @@ In `Cargo.toml` in the section `package.metadata.leptos`, where fields specific 
 
 - The classes used in your rust code
 - The content of an input file (this is typically a CSS file with Tailwind directives)
+
+---
+
+## Integrating Tailwind with Leptos
+
+---
+
+Tailwind is supported natively by Leptos.
+
+### In `package.metadata.leptos` section of `Cargo.toml`
+
+- `tailwind-input-file` - Path to the input CSS file with Tailwind directives, usually "input.css"
+- `tailwind-config-file`- Path to Tailwind configuration file, usually "tailwind.config.js"
+
+---
+
+## View Template
+
+---
+
+### `app.rs` file contains the root component
+
+- Defines the HTML structure of the application
+- Uses Leptos' `view!` macro to create HTML elements and components
+- It is a bridge between our rust code and the rendered HTML in the browser
+
+### `view!` macro
+
+- Similar to JSX in React
+- Looks like a function
+- We pass HTML-like syntax to it, and just like normal macro, it expands into rust code at compile time.
