@@ -77,3 +77,16 @@ Ultimately, WebAssembly opens the doors for programmers to build browser based a
   - First `unknown` indicates no specific operating system.
   - Second `unknown` indicates no specific CPU architecture.
 - This target is necessary for compiling Rust code to WebAssembly.
+
+---
+
+## Creating a New Leptos Project
+
+---
+
+- **Don't use `cargo new` or `cargo init`! Even a barebones Leptos setup requires a few dependencies and features configured.**
+- **Use the Leptos starter template - it comes pre-configured with everything you need to get started.**
+
+  ```bash
+  cargo leptos new --git leptos-rs/start
+  ```
