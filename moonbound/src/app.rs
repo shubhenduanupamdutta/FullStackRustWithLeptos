@@ -9,13 +9,17 @@ use leptos_router::{
 #[component]
 pub fn Navbar() -> impl IntoView {
     view! {
-        <h2> "Shubhendu's Blog" </h2>
-        <nav>
-            <ul>
-                <li><a href="/">Blog</a></li>
-                <li><a href="/edit">Create</a></li>
-            </ul>
-        </nav>
+        <div class="dark:bg-gray-800 text-white p-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold">Moonbound</a>
+                <nav>
+                    <ul class="flex space-x-4">
+                        <li><a href="/" class="hover:text-blue-400">Blog</a></li>
+                        <li><a href="/edit" class="hover:text-blue-400">Create</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     }
 }
 
