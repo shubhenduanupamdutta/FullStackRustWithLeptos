@@ -28,7 +28,7 @@ pub fn App() -> impl IntoView {
                 <Routes fallback=|| "404 Not Found">
                     <Route path=path!("") view=BlogPreviews />
                     <Route path=path!("edit/:post_id?") view=EditPost />
-                    <Route path=path!("post/*post_path") view=ViewPost />
+                    <Route path=path!("view/:post_id?") view=ViewPost />
                 </Routes>
             </main>
         </Router>
