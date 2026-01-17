@@ -1,3 +1,6 @@
+use std::io;
+use sqlx::{migrate, sqlite::SqlitePoolOptions};
+
 #[cfg(feature = "ssr")]
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -11,6 +14,16 @@ async fn main() -> std::io::Result<()> {
 
     let conf = get_configuration(None).unwrap();
     let addr = conf.leptos_options.site_addr;
+
+    let db_pool = SqlitePoolOptions::new()
+        .connect("sqlite:post.db")
+        .await
+        .map_err(|e| io::Error::new(io::ErrorKind::Other, e))?;
+
+    migrate!("./migrations")
+        .run(&db_pool)
+        .await
+        .expect("Could not run database migrations");
 
     HttpServer::new(move || {
         // Generate the list of routes in your Leptos App

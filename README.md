@@ -264,3 +264,25 @@ Leptos signals are a way to manage reactive state in Leptos applications. A sign
 - This function can be called from the client side, despite the fact that body will run on the server. That's because Leptos automatically generates the necessary client-side code to make the remote call to the server when the function is invoked from the client side.
 - Leptos makes all server function "POST" by default.
 
+---
+
+## SQLx and SQLite
+
+---
+
+- SQLx is an async, pure Rust SQL crate featuring compile-time checked queries without a DSL.
+- SQLite is a C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine.
+- You can install a useful cli tool for managing SQLite database using sqlx
+
+  ```bash
+  cargo install sqlx-cli
+  ```
+
+### To create a new SQLite database, you can follow these steps
+
+- First set an environment variable `DATABASE_URL` to the desired database file path. For example:
+
+  ```bash
+  export DATABASE_URL=sqlite:./my_database.db
+  ```
+- 
