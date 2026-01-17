@@ -251,3 +251,16 @@ Leptos signals are a way to manage reactive state in Leptos applications. A sign
 
 - Must update all elements that may be affected by the modified state
 - Tight coupling between modifiers of state and consumers of state, a change in one may require changes in the other.
+
+---
+
+## Server Side Function
+
+---
+
+- Leptos completely abstracts away the arguments of handler function (how they are serialized, deserialized, sent over the network, etc.) and allows you to focus on writing the actual logic of the function.
+- Leptos provides the `#[server]` attribute macro to define server-side functions that can be called from the client side.
+- Body of the function contains the actual server-side logic, and **guaranteed to run on the server.**
+- This function can be called from the client side, despite the fact that body will run on the server. That's because Leptos automatically generates the necessary client-side code to make the remote call to the server when the function is invoked from the client side.
+- Leptos makes all server function "POST" by default.
+
