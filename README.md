@@ -229,4 +229,25 @@ Like in most reactive front-end frameworks, a component is a modular building bl
 We will create components when building a blog website.
 
 - Each component will be defined in `component` folder inside `src` directory.
--
+
+---
+
+## Leptos Signals
+
+---
+
+Leptos signals are a way to manage reactive state in Leptos applications. A signal represents a piece of state that can change over time, and when it changes, any components or computations that depend on that signal will automatically update to reflect the new value.
+
+### Page Changes
+
+#### Generally pages may change when
+
+- User performs an action (like clicking a button or submitting a form)
+- Data is received from server (like fetching data from an API on button click)
+
+### Proactive (Non-reactive) Approach
+
+#### Logic responsible for modifying state
+
+- Must update all elements that may be affected by the modified state
+- Tight coupling between modifiers of state and consumers of state, a change in one may require changes in the other.
