@@ -35,6 +35,7 @@ async fn main() -> std::io::Result<()> {
 
         App::new()
             // serve JS/WASM/CSS from `pkg`
+            .app_data(web::Data::new(db_pool.clone()))
             .service(Files::new("/pkg", format!("{site_root}/pkg")))
             // serve other assets from the `assets` directory
             .service(Files::new("/assets", &site_root))
