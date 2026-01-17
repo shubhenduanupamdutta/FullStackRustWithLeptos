@@ -90,3 +90,5 @@ Ultimately, WebAssembly opens the doors for programmers to build browser based a
   ```bash
   cargo leptos new --git leptos-rs/start
   ```
+
+- Then you can use `cargo leptos watch` to run the development server with hot reloading.
