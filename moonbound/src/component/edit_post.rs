@@ -2,6 +2,9 @@ use leptos::prelude::*;
 use leptos_router::{hooks::use_params, params::Params};
 use serde::{Deserialize, Serialize};
 
+use crate::model::blog_post::Post;
+use crate::component::blog_post::BlogPost;
+
 #[derive(Params, Eq, PartialEq, Debug, Clone, Serialize, Deserialize)]
 struct EditPostParams {
     post_id: Option<String>,
@@ -10,13 +13,36 @@ struct EditPostParams {
 #[component]
 pub fn EditPost() -> impl IntoView {
     let params = use_params::<EditPostParams>();
-    let display_params = move || match params.get() {
-        Ok(EditPostParams { post_id: Some(s) }) => s,
-        _ => "".to_string(),
-    };
+
+    let (post, set_post) = signal(Post::new_empty());
 
     view! {
-        {display_params}
-
+        <div class="flex h-screen">
+            <div class="min-w-[50%] max-h-[90%] text-gray-200 dark:bg-gray-800 bg-gray-100 p-10 rounded-md">
+                <form>
+                    <label class="block mb-4">
+                        <span>Title</span>
+                        <input class="mt-1 p-2 w-full" type="text" id="title" name="title"
+                            on:input=move |ev| {
+                                set_post.update(|post| post.title = event_target_value(&ev));
+                            }
+                            prop:value={move || post.get().title}
+                        />
+                    </label>
+                    <label class="block mb-4">
+                    <span>Entry</span>
+                            <textarea class="mt-1 p-2 w-full" id="text" name="text"
+                                on:input=move |ev| {
+                                    set_post.update(|post| post.text = event_target_value(&ev));
+                                }
+                                prop:value={move || post.get().text}
+                            />
+                    </label>
+                </form>
+            </div>
+            <div>
+                {move || view! {<BlogPost post=post.get() />}}
+            </div>
+        </div>
     }
 }

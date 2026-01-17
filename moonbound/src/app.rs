@@ -9,7 +9,7 @@ use leptos_router::{
 #[component]
 pub fn Navbar() -> impl IntoView {
     view! {
-        <h2> Blog </h2>
+        <h2> "Shubhendu's Blog" </h2>
         <nav>
             <ul>
                 <li><a href="/">Blog</a></li>
@@ -25,12 +25,12 @@ pub fn App() -> impl IntoView {
     provide_meta_context();
 
     view! {
-        <Stylesheet id="leptos" href="/pkg/leptos_start.css"/>
+        <Stylesheet id="leptos" href="/pkg/moonbound.css"/>
         <Title text="Welcome to Leptos"/>
 
         <Navbar />
         <Router>
-            <main>
+            <main class="bg-gray-700 text-gray-200 p-8 h-full">
                 <Routes fallback=|| "404 Not Found">
                     <Route path=path!("") view=BlogPreviews />
                     <Route path=path!("edit/:post_id?") view=EditPost />
