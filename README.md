@@ -92,3 +92,97 @@ Ultimately, WebAssembly opens the doors for programmers to build browser based a
   ```
 
 - Then you can use `cargo leptos watch` to run the development server with hot reloading.
+
+---
+
+## Rust Project Structure
+
+---
+
+### Types of Crates
+
+- Binary Crate - An executable program. In Leptos projects, the server code is typically organized as a binary crate.
+- Library Crate - A reusable library. In Leptos projects, the shared code and
+
+### A Rust package (project directory) in general can contain
+
+- At most one library crate.
+- Any number of binary crates.
+
+---
+
+## Leptos Project Structure
+
+---
+
+### One Library - `lib.rs`
+
+- Represents front-end logic
+- Compiled to WebAssembly
+
+### One binary - `main.rs`
+
+- Represents back-end logic
+- Compiled to bare metal
+- Hosts APIs and static files
+
+Both crates are inside the package represented by the project directory, and the `Cargo.toml` file at the root of the project directory configures both crates.
+
+In `Cargo.toml` in the section `package.metadata.leptos`, where fields specific to leptos are configured. For now, let's focus on two fields: `bin-features` and `lib-features`.
+
+- `bin-features` - Features to enable for the binary crate. Here, we enable the `ssr` feature which adds support for server-side rendering. Any features mentioned here will be available for backend logic to use.
+- `lib-features` - Features to enable for the library crate. Here, we enable the `hydrate` feature which adds support for hydrating server-rendered HTML on the client side. Any features mentioned here will be available for front-end logic to use.
+
+---
+
+## SSR Feature
+
+---
+
+- Enabled by bin crate
+- Dependencies don't need to compile to WASM
+- Not part of the binary sent to the user's browser
+- Backend logic will access to dependencies mentioned in SSR feature
+
+---
+
+## Hydrate Feature
+
+---
+
+- Enabled by lib crate
+- Dependencies must compile to WASM and will be sent to the user's browser
+  - This might limit potential dependencies
+  - More dependencies means larger client bundle size
+
+---
+
+## Dependency Strategies
+
+---
+
+### Front-end specific dependencies
+
+- Set optional to true
+- Add to `hydrate` feature, using `dep:<dependency_name>`
+
+### Back-end specific dependencies
+
+- Set optional to true
+- Add to `ssr` feature, using `dep:<dependency_name>`
+
+---
+
+## Tailwind CSS
+
+---
+
+### Provides predefined utility classes for rapid UI development
+
+- Spend less time creating your own
+- Well-loved by front-end developers
+
+### Compile a CSS file based on
+
+- The classes used in your rust code
+- The content of an input file (this is typically a CSS file with Tailwind directives)
